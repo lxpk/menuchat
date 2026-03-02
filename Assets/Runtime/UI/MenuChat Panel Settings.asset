@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MenuChat Panel Settings
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.PanelSettings
   themeUss: {fileID: -4733365628477956816, guid: 5d7f712db59d4478192c1e6c332f7619, type: 3}
-  m_TargetTexture: {fileID: 8400000, guid: 10e4e8a187cdc4c1595368d2e652a20a, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_ScaleMode: 2
   m_Scale: 1
   m_ReferenceDpi: 150
