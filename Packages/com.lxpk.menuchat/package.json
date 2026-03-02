@@ -1,0 +1,35 @@
+{
+  "name": "com.lxpk.menuchat",
+  "version": "1.0.0",
+  "displayName": "MenuChat",
+  "description": "Unity menu chat system for talking to LLM chat provider via local LLM or remote WebSocket.",
+  "unity": "2021.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/lxpk/menuchat",
+  "changelogUrl": "https://github.com/lxpk/menuchat/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/lxpk/menuchat/blob/main/LICENSE.md",
+  "dependencies": {
+    "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.ui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0"
+  },
+  "keywords": [
+    "chat",
+    "llm",
+    "websocket",
+    "ui-toolkit",
+    "menu"
+  ],
+  "author": {
+    "name": "lxpk",
+    "url": "https://github.com/lxpk"
+  },
+  "samples": [
+    {
+      "displayName": "MenuChat Sample Scene",
+      "description": "Sample scene demonstrating MenuChat with RemoteWebSocket connection mode.",
+      "path": "Samples~/MenuChatSample"
+    }
+  ]
+}

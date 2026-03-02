@@ -3,7 +3,11 @@
 Unity menu chat system for talking to LLM chat provider.
 
 ## INSTRUCTIONS
-To use this, import via git repo into Unity Package Manager from https://github.com/lxpk/menuchat.
+
+**Install via Package Manager (Git URL):**
+1. Window → Package Manager → + → Add package from git URL
+2. Enter: `https://github.com/lxpk/menuchat.git#path:Packages/com.lxpk.menuchat`
+3. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
 
 ## UNITY VERSION SUPPORT
 

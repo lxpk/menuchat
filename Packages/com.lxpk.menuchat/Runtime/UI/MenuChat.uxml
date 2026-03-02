@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="MenuChat.uss" />
+    <ui:VisualElement name="root" class="menu-chat-root" style="top: 1px; right: 1px;">
+        <ui:VisualElement name="passthrough-overlay" class="menu-chat-passthrough" />
+        <ui:VisualElement name="chat-button-wrapper" class="chat-button-wrapper">
+            <ui:Button name="chat-button" class="chat-button-icon" />
+            <ui:Label name="chat-button-badge" class="chat-button-badge" />
+        </ui:VisualElement>
+        <ui:VisualElement name="chat-box" class="chat-box" style="width: 656px;">
+            <ui:ScrollView name="chat-scroll" mode="Vertical" class="chat-scroll">
+                <ui:VisualElement name="chat-log-content" class="chat-log-content" />
+            </ui:ScrollView>
+            <ui:VisualElement name="input-row" class="input-row">
+                <ui:Button name="chat-toggle-inbox" class="chat-toggle-inbox" />
+                <ui:TextField name="chat-input" multiline="true" class="chat-input" />
+                <ui:Button name="help-button" class="help-button" />
+                <ui:Button name="send-button" text="Send" class="send-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="info-popup" class="info-popup" style="top: 28px; bottom: 4px; left: 676px; width: 500px;">
+            <ui:Label name="info-popup-title" class="info-popup-title" />
+            <ui:ScrollView name="info-popup-scroll" mode="Vertical" class="info-popup-scroll">
+                <ui:Label name="info-popup-text" class="info-popup-text" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="chat-bubble" class="chat-bubble" style="font-size: 11px;">
+            <ui:Label name="chat-bubble-text" display="none" class="chat-bubble-text" style="font-size: 11px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
