@@ -6,22 +6,21 @@ Unity menu chat system for talking to LLM chat provider.
 
 **Install via Package Manager (Git URL):**
 
-**Important:** NativeWebSocket must be installed *before* MenuChat (Unity does not resolve git-package dependencies from registries).
+1. Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
+2. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
 
-1. Add NativeWebSocket first: Package Manager → + → Add package from git URL → `https://github.com/endel/NativeWebSocket.git#upm`
-2. Add MenuChat: Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
-3. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
+No additional packages are required. WebSocket support is embedded (NativeWebSocket, Apache 2.0).
 
 ## UNITY VERSION SUPPORT
 
-WebSocket code is conditionally compiled via `UNITY_6000_0_OR_NEWER` and `UNITY_2021_3_OR_NEWER`. Both code paths use the NativeWebSocket API.
+- **Unity 2021.3, 2022, 2023:** Full support. WebSocket code is embedded from [NativeWebSocket](https://github.com/endel/NativeWebSocket). Supports WebGL and editor.
+- **Unity 6.0 or later:** Full support. `IgnoreCertificateErrors` is available for self-signed certificates on Unity 6+.
 
-### 2021.3 (and 2022, 2023)
-Unity 2021.3 lacks NativeWebSocket as a built-in library. The project uses the `com.endel.nativewebsocket` package (added via Git URL). UnityTransport 1.5 is a project dependency but does not provide general WebSocket client capability (only UTP protocol). Supports WebGL usecases and editor use.
+## THIRD PARTY
 
-### Unity 6.0 or later
-Unity 6.0 or later supports NativeWebSocket as a standard Unity library. The same `com.endel.nativewebsocket` package is included for compatibility. Supports WebGL usecases and editor use.
+This package embeds [NativeWebSocket](https://github.com/endel/NativeWebSocket) (Endel Dreyer, Jiri Hybek) under Apache 2.0. See `Third Party Notices.md` in the package for details.
 
-## Differences
-- **IgnoreCertificateErrors**: The Unity 6 built-in NativeWebSocket exposes `IgnoreCertificateErrors`; the `com.endel.nativewebsocket` package (2021.3) does not. This is handled via `#if UNITY_6000_0_OR_NEWER` so the assignment is only compiled for Unity 6+. On 2021.3, certificate validation uses platform defaults (self-signed certs may fail; use `wss://` with valid certs or `ws://` for local dev).
+## Notes
 
+- **IgnoreCertificateErrors:** On Unity 6+, self-signed certs can be bypassed. On 2021.3, use `wss://` with valid certs or `ws://` for local dev.
+- **WebGL:** Supported via embedded WebSocket implementation.

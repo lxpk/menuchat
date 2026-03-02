@@ -4,8 +4,7 @@
   "references": [
     "UnityEngine.UI",
     "Unity.UI",
-    "Unity.UIElements",
-    "com.endel.nativewebsocket"
+    "Unity.UIElements"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

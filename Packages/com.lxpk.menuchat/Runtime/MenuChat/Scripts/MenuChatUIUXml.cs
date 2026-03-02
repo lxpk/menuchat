@@ -9,11 +9,7 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR
-#if UNITY_6000_0_OR_NEWER
-using NativeWebSocket; // Unity 6+ built-in
-#else
-using NativeWebSocket; // From com.endel.nativewebsocket package (2021.3, 2022, 2023, etc.)
-#endif
+using NativeWebSocket; // Embedded in package (from github.com/endel/NativeWebSocket, Apache 2.0)
 #endif
 
 namespace CardChat.UI
