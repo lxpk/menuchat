@@ -23,3 +23,11 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## LiberationSans SDF (TextMesh Pro font asset)
+
+- **Source:** TextMesh Pro Essential Resources (Unity Technologies)
+- **Font:** Liberation Sans, SIL Open Font License 1.1
+- **Files:** `Runtime/UI/Resources/Fonts & Materials/LiberationSans SDF.asset`
+
+Included as default font for UI Toolkit text rendering.

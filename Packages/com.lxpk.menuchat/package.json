@@ -1,6 +1,6 @@
 {
   "name": "com.lxpk.menuchat",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "displayName": "MenuChat",
   "description": "Unity menu chat system for talking to LLM chat provider via local LLM or remote WebSocket.",
   "unity": "2021.3",
@@ -13,6 +13,7 @@
     "url": "https://github.com/lxpk/menuchat.git"
   },
   "dependencies": {
+    "com.unity.textmeshpro": "3.0.0",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
     "com.unity.modules.uielements": "1.0.0"

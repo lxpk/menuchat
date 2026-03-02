@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UITK Text Settings
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.PanelTextSettings
   m_Version: 
-  m_DefaultFontAsset: {fileID: 0}
+  m_DefaultFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_DefaultFontAssetPath: Fonts & Materials/
   m_FallbackFontAssets: []
   m_MatchMaterialPreset: 0

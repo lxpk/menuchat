@@ -9,7 +9,7 @@ Unity menu chat system for talking to LLM chat provider.
 1. Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
 2. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
 
-No additional packages are required. WebSocket support is embedded (NativeWebSocket, Apache 2.0).
+No manual setup required. The package includes embedded WebSocket support (NativeWebSocket) and a default font (LiberationSans SDF). TextMeshPro is a dependency for text rendering.
 
 ## UNITY VERSION SUPPORT
 
