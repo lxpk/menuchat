@@ -6,20 +6,11 @@ Unity menu chat system for talking to LLM chat provider.
 
 **Install via Package Manager (Git URL):**
 
-Add the OpenUPM scoped registry first (so the NativeWebSocket dependency can resolve). Edit `Packages/manifest.json` and add this inside the root object:
-```json
-"scopedRegistries": [
-  {
-    "name": "OpenUPM",
-    "url": "https://package.openupm.com",
-    "scopes": ["com.endel"]
-  }
-],
-```
+**Important:** NativeWebSocket must be installed *before* MenuChat (Unity does not resolve git-package dependencies from registries).
 
-Then:
-1. Add MenuChat: Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
-2. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
+1. Add NativeWebSocket first: Package Manager → + → Add package from git URL → `https://github.com/endel/NativeWebSocket.git#upm`
+2. Add MenuChat: Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
+3. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
 
 ## UNITY VERSION SUPPORT
 
