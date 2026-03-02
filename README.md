@@ -5,8 +5,8 @@ Unity menu chat system for talking to LLM chat provider.
 ## INSTRUCTIONS
 
 **Install via Package Manager (Git URL):**
-1. Window → Package Manager → + → Add package from git URL
-2. Enter: `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
+1. Add NativeWebSocket first: Package Manager → + → Add package from git URL → `https://github.com/endel/NativeWebSocket.git#upm`
+2. Add MenuChat: Package Manager → + → Add package from git URL → `https://github.com/lxpk/menuchat.git?path=/Packages/com.lxpk.menuchat`
 3. Import the sample via Package Manager (Samples → MenuChat Sample Scene → Import)
 
 ## UNITY VERSION SUPPORT

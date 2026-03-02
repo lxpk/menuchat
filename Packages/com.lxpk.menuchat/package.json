@@ -9,7 +9,6 @@
   "changelogUrl": "https://github.com/lxpk/menuchat/blob/main/CHANGELOG.md",
   "licensesUrl": "https://github.com/lxpk/menuchat/blob/main/LICENSE.md",
   "dependencies": {
-    "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
     "com.unity.modules.uielements": "1.0.0"
