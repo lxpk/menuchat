@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb65868d430ff4c7b967c1dbfc01858a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TcgEngine.UI.MenuChatUIUXml
+  m_EditorClassIdentifier: com.lxpk.menuchat::CardChat.UI.MenuChatUIUXml
   connectionMode: 1
   localChatProviderObject: {fileID: 0}
   websocketUrl: ws://52.9.223.25:8000/ws/v1/chat/completions

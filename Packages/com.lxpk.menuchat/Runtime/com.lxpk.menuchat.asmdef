@@ -1,0 +1,19 @@
+{
+  "name": "com.lxpk.menuchat",
+  "rootNamespace": "CardChat.UI",
+  "references": [
+    "UnityEngine.UI",
+    "Unity.UI",
+    "Unity.UIElements",
+    "com.endel.nativewebsocket"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
