@@ -76,4 +76,5 @@ MonoBehaviour:
   hyperlinkDictionary: {fileID: 11400000, guid: f2452e736ea184615bda92ab1ce9294a, type: 2}
   helpMessageUrl: https://github.com/Magi-AGI/cardcore
   logMessages: 1
-  disableWhenChatClosed: 0
+  hideOnStart: 1
+  disableWhenChatClosed: 1

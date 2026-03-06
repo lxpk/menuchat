@@ -92,7 +92,7 @@ namespace CardChat.UI
 
         [Header("Passthrough to uGUI")]
         [Tooltip("When true, sets PanelSettings sort order to -1 when chat is closed (so uGUI behind receives clicks) and 0 when open. Use OpenFromExternal() from a uGUI button to reopen.")]
-        public bool disableWhenChatClosed = false;
+        public bool disableWhenChatClosed = true;
 
         private UIDocument uiDocument;
         private VisualElement root;
