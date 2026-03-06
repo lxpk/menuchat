@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: MenuChat Panel Settings
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.PanelSettings
-  themeUss: {fileID: -4733365628477956816, guid: e1954dc6500c9431f8f4217e4fc352b2, type: 3}
+  themeUss: {fileID: -4733365628477956816, guid: 5d7f712db59d4478192c1e6c332f7619, type: 3}
   m_TargetTexture: {fileID: 0}
   m_ScaleMode: 2
   m_Scale: 1
   m_ReferenceDpi: 150
   m_FallbackDpi: 150
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1600, y: 1080}
   m_ScreenMatchMode: 0
   m_Match: 0
   m_SortingOrder: 0
@@ -34,4 +34,4 @@ MonoBehaviour:
   m_AtlasBlitShader: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeShader: {fileID: 9100, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeWorldShader: {fileID: 9102, guid: 0000000000000000f000000000000000, type: 0}
-  textSettings: {fileID: 11400000, guid: b6afed27ef6544fb59e99fccca075708, type: 2}
+  textSettings: {fileID: 11400000, guid: 4cc1bc20fe67b4cd488bcf46515adda7, type: 2}

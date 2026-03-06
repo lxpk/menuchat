@@ -356,9 +356,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4425603190466809156, guid: 9e567500dd1134f2a90b2d0dc248b7ce, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8135175037653302173, guid: 9e567500dd1134f2a90b2d0dc248b7ce, type: 3}
       propertyPath: m_Name
       value: ChatPanelUIUXML
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510026666155749693, guid: 9e567500dd1134f2a90b2d0dc248b7ce, type: 3}
+      propertyPath: disableWhenChatClosed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e567500dd1134f2a90b2d0dc248b7ce, type: 3}

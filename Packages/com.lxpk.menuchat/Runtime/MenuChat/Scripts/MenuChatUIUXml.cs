@@ -9,7 +9,11 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR
-using NativeWebSocket; // Embedded in package (from github.com/endel/NativeWebSocket, Apache 2.0)
+#if UNITY_6000_0_OR_NEWER
+using NativeWebSocket; // Unity 6+ built-in
+#else
+using NativeWebSocket; // From com.endel.nativewebsocket package (2021.3, 2022, 2023, etc.)
+#endif
 #endif
 
 namespace CardChat.UI
@@ -82,8 +86,12 @@ namespace CardChat.UI
         [Header("Debug")]
         public bool logMessages = true;
 
+        [Header("Visibility")]
+        [Tooltip("When true, chat starts hidden. Use OpenFromExternal() from a uGUI button to show.")]
+        public bool hideOnStart = true;
+
         [Header("Passthrough to uGUI")]
-        [Tooltip("When true, disables UIDocument when chat box is closed so uGUI behind it receives clicks. Use OpenFromExternal() from a uGUI button to reopen.")]
+        [Tooltip("When true, sets PanelSettings sort order to -1 when chat is closed (so uGUI behind receives clicks) and 0 when open. Use OpenFromExternal() from a uGUI button to reopen.")]
         public bool disableWhenChatClosed = false;
 
         private UIDocument uiDocument;
@@ -264,19 +272,25 @@ namespace CardChat.UI
             }
         }
 
+        private void SetPanelSortOrder(int order)
+        {
+            if (!disableWhenChatClosed || uiDocument?.panelSettings == null) return;
+            uiDocument.panelSettings.sortingOrder = order;
+        }
+
         private void HideChatBox()
         {
             if (chatBox == null) return;
             TrySendFromInput();
             chatBox.style.display = DisplayStyle.None;
-            if (disableWhenChatClosed && uiDocument != null)
-                uiDocument.enabled = false;
+            SetPanelSortOrder(-1);
         }
 
         private void ShowChatBox()
         {
             if (chatBox == null) return;
             chatBox.style.display = DisplayStyle.Flex;
+            SetPanelSortOrder(0);
             unreadCount = 0;
             UpdateBadge();
             chatInput?.Focus();
@@ -325,8 +339,16 @@ namespace CardChat.UI
             if (uiDocument?.rootVisualElement != null && root == null)
                 BindUI();
 
-            if (disableWhenChatClosed && uiDocument != null && (chatBox == null || chatBox.style.display != DisplayStyle.Flex))
-                uiDocument.enabled = false;
+            if (hideOnStart)
+            {
+                if (chatBox != null)
+                    chatBox.style.display = DisplayStyle.None;
+                SetPanelSortOrder(-1);
+            }
+            else if (disableWhenChatClosed)
+            {
+                SetPanelSortOrder(0);
+            }
 
             if (connectionMode == ConnectionMode.LocalLLM)
                 InitializeLocalLLM();
@@ -1137,11 +1159,9 @@ namespace CardChat.UI
             return ui_list.Count > 0 ? ui_list[0] : null;
         }
 
-        /// <summary>Call from a uGUI button (or other script) to open the chat when using disableWhenChatClosed. Enables UIDocument and shows the chat box.</summary>
+        /// <summary>Call from a uGUI button (or other script) to open the chat when using disableWhenChatClosed. Sets sort order to 0 and shows the chat box.</summary>
         public void OpenFromExternal()
         {
-            if (uiDocument != null)
-                uiDocument.enabled = true;
             if (uiDocument?.rootVisualElement != null && root == null)
                 BindUI();
             ShowChatBox();
