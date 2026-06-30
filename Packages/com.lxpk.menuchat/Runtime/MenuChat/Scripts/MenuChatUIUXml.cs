@@ -94,6 +94,17 @@ namespace CardChat.UI
         [Tooltip("When true, sets PanelSettings sort order to -1 when chat is closed (so uGUI behind receives clicks) and 0 when open. Use OpenFromExternal() from a uGUI button to reopen.")]
         public bool disableWhenChatClosed = false;
 
+        [Header("MenuState Scanning")]
+        [Tooltip("Assign a MenuStateScanner component to auto-send hidden menustate updates over the WebSocket (RemoteWebSocket mode only).")]
+        [SerializeField] private MenuStateScanner menuStateScanner;
+        [Tooltip("When true, menustate changes from the scanner are sent to the server as hidden context.")]
+        public bool autoSendMenuState = true;
+        [Tooltip("chat_mode field sent with hidden menustate messages.")]
+        public string menustateChatMode = "menuchat";
+        [Tooltip("Optional character name; sent as the 'model' field in menustate messages.")]
+        public string characterName = "";
+        private bool menustate_subscribed;
+
         private UIDocument uiDocument;
         private VisualElement root;
         private VisualElement chatButtonWrapper;
@@ -152,6 +163,7 @@ namespace CardChat.UI
         private void OnDestroy()
         {
             ui_list.Remove(this);
+            UnwireMenuStateScanner();
 #if !UNITY_WEBGL || UNITY_EDITOR
 #if UNITY_6000_0_OR_NEWER || UNITY_2021_3_OR_NEWER
             DisconnectWebSocket();
@@ -360,6 +372,8 @@ namespace CardChat.UI
 #else
                 { }
 #endif
+
+            WireMenuStateScanner();
         }
 
         private void Update()
@@ -528,6 +542,10 @@ namespace CardChat.UI
         {
             try
             {
+                // Hidden menustate acknowledgements are side-channel only — never shown in the chat log.
+                if (MenuStateJson.IsHiddenContextQueuedAck(message))
+                    return;
+
                 string response_text = null;
                 if (message.Trim().StartsWith("{"))
                 {
@@ -695,6 +713,82 @@ namespace CardChat.UI
         }
 #endif
 #endif
+
+        // ----------------------------------------------------- Hidden menustate
+
+        private void WireMenuStateScanner()
+        {
+            if (menuStateScanner == null || !autoSendMenuState || menustate_subscribed) return;
+            menuStateScanner.OnMenuStateChanged += OnMenuStateChangedHandler;
+            menuStateScanner.ConnectionStatusProvider = IsRemoteConnectionOpen;
+            menustate_subscribed = true;
+        }
+
+        private void UnwireMenuStateScanner()
+        {
+            if (menuStateScanner == null || !menustate_subscribed) return;
+            menuStateScanner.OnMenuStateChanged -= OnMenuStateChangedHandler;
+            menuStateScanner.ConnectionStatusProvider = null;
+            menustate_subscribed = false;
+        }
+
+        private void OnMenuStateChangedHandler(string treeText)
+        {
+            if (connectionMode != ConnectionMode.RemoteWebSocket) return;
+            SendHiddenMenuStateWebSocket(treeText);
+        }
+
+        /// <summary>True when the remote WebSocket transport is open. Used to gate scanner polling.</summary>
+        private bool IsRemoteConnectionOpen()
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+#if UNITY_6000_0_OR_NEWER || UNITY_2021_3_OR_NEWER
+            return websocket != null && websocket.State == WebSocketState.Open;
+#else
+            return false;
+#endif
+#else
+            return false;
+#endif
+        }
+
+        /// <summary>Send a hidden menustate update over the WebSocket. No-op unless the socket is open.</summary>
+        private void SendHiddenMenuStateWebSocket(string content)
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+#if UNITY_6000_0_OR_NEWER || UNITY_2021_3_OR_NEWER
+            if (websocket == null || websocket.State != WebSocketState.Open) return;
+            string json = MenuStateJson.SerializeHiddenMenustate(content, menustateChatMode, characterName);
+            if (string.IsNullOrEmpty(json)) return;
+            try
+            {
+                websocket.SendText(json);
+                if (logMessages)
+                    Debug.Log($"[MenuChatUIUXml] Sent hidden menustate ({content?.Length ?? 0} chars).");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[MenuChatUIUXml] MenuState send error: {e.Message}");
+            }
+#endif
+#endif
+        }
+
+        /// <summary>Test hook: serialize and send a hidden menustate message directly.</summary>
+        internal void SendHiddenMenuStateForTest(string content) => SendHiddenMenuStateWebSocket(content);
+
+        /// <summary>Test hook: route a raw inbound message through the normal receive path.</summary>
+        internal void ProcessIncomingForTest(string message)
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+#if UNITY_6000_0_OR_NEWER || UNITY_2021_3_OR_NEWER
+            ProcessWebSocketMessage(message);
+#endif
+#endif
+        }
+
+        /// <summary>Test hook: number of lines currently in the visible chat log.</summary>
+        internal int ChatLogLineCountForTest => chat_log_lines.Count;
 
         public void SendChat(string msg)
         {
