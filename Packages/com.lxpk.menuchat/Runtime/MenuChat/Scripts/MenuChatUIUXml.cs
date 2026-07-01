@@ -1260,5 +1260,15 @@ namespace CardChat.UI
                 BindUI();
             ShowChatBox();
         }
+        
+        /// <summary>
+        ///  Receives events from the game UI informing it of a screen change.
+        /// </summary>
+        public void UIScreenChange()
+        {
+            Debug.Log("UIScreenChange event");
+        }
     }
+
+  
 }

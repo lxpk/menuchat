@@ -243,15 +243,11 @@ namespace CardChat.UI
             string n = go.name;
             if (n.IndexOf("Title", StringComparison.OrdinalIgnoreCase) >= 0) return true;
             if (n.IndexOf("Header", StringComparison.OrdinalIgnoreCase) >= 0) return true;
-            try
-            {
-                if (go.CompareTag("Title") || go.CompareTag("Header")) return true;
-            }
-            catch (UnityException)
-            {
-                // Tags not defined in this project — name match is sufficient.
-            }
-            return false;
+            // Read the assigned tag directly. Never use CompareTag here: it validates its argument
+            // against the TagManager and logs "Tag: X is not defined" when the tag does not exist.
+            // The .tag getter only ever returns a defined tag, so the comparison is always safe.
+            string tag = go.tag;
+            return tag == "Title" || tag == "Header";
         }
 
         private string BuildPathToFirstInteractive()
