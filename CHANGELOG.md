@@ -1,4 +1,6 @@
 # CHANGELOG
+## Version 1.1.5:
+* MenuStateScanner automatically scans chosen UnityGUI Canvas or UXML UIDocument and sends to and from chat agent.
 
 ## Version 1.0.8:
 * Fixing text and font settings

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4171879562931910981}
   - component: {fileID: 4425603190466809156}
   - component: {fileID: -3028878326948669130}
+  - component: {fileID: 777980928}
   m_Layer: 0
   m_Name: ChatPanelUIUXML
   m_TagString: Untagged
@@ -78,3 +79,27 @@ MonoBehaviour:
   logMessages: 1
   hideOnStart: 1
   disableWhenChatClosed: 1
+  menuStateScanner: {fileID: 777980928}
+  autoSendMenuState: 1
+  menustateChatMode: menuchat
+  characterName: 
+--- !u!114 &777980928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135175037653302173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c133cc0b006d41b6a126d0f0f0ab19fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasesToScan:
+  - {fileID: 0}
+  uiDocumentsToScan:
+  - {fileID: 4425603190466809156}
+  excludeMenuChatCanvas: 1
+  scanIntervalSeconds: 0.5
+  scanOnlyWhenConnected: 1
+  menuUser: 
